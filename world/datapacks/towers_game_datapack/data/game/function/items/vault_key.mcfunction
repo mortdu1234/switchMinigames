@@ -1,0 +1,1 @@
+execute at @e[tag=vault_key] run particle minecraft:witch ~ ~.2 ~ .1 .1 .1 0 1

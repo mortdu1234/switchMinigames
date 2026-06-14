@@ -1,0 +1,7 @@
+{
+  "values": [
+    "winpoints:tick",
+    "combatmode:tick",
+    "game:tick"
+  ]
+}

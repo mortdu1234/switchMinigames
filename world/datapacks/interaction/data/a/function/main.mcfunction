@@ -1,0 +1,2 @@
+bossbar set minecraft:bossbar players @a
+bossbar set bossbar name [{"score":{"name":"Blue","objective":"teamKills"},"color":"blue","bold":true},{"text":" 🗡  ","color":"blue","bold":true},{"score":{"name":"Blue","objective":"teamPoints"},"color":"blue","bold":true},{"text":" 🎯","color":"blue","bold":true},{"text":"           "},{"text":"🎯 ","color":"red","bold":true},{"score":{"name":"Red","objective":"teamPoints"},"color":"red","bold":true},{"text":"  🗡 ","color":"red","bold":true},{"score":{"name":"Red","objective":"teamKills"},"color":"red","bold":true}]

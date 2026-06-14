@@ -1,0 +1,2 @@
+tellraw @a[gamemode=spectator,team=Neutral] [{text:"Click ",color:"white"},{text:"here",color:"green",bold:true,italic:true,click_event:{"action":"run_command","command":"/trigger leaveObsRequest set 1"}},{text:" to leave Observers.",color:"white"},{text:" (This message will reappear every 30 seconds.)",color:"gray"}]
+schedule function game:spectator/remind 30s

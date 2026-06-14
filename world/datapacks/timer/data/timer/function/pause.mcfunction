@@ -1,0 +1,1 @@
+scoreboard players set paused timer 1

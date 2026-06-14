@@ -1,0 +1,4 @@
+execute as @a[scores={max_kills=1..}] if score @s max_kills < @a[limit=1,sort=random,scores={max_kills=1..}] max_kills run scoreboard players reset @s max_kills
+execute store result score count max_kills if entity @a[scores={max_kills=0..}]
+execute if score count max_kills matches 2.. run schedule function game:gameplay/mvp_elimination 1t
+execute if score count max_kills matches ..1 run tellraw @a [{text:"MVP: ",color:"gold",bold:true},{selector:"@a[scores={max_kills=1..},limit=1]",color:"yellow"},{text:" with ",color:"gold"},{score:{name:"@a[scores={max_kills=1..},limit=1]",objective:"max_kills"},color:"yellow"},{text:" kills!",color:"gold"}]
