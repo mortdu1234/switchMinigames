@@ -62,12 +62,38 @@ else
     echo "Attention : aucun server.properties trouvé pour $MINIGAME"
 fi
 
-# --- 5. Remplacement du .env (définit la version de Java à utiliser) ---
-if [[ -f "$MINIGAME_DIR/.env" ]]; then
-    echo "==> Remplacement du .env"
-    cp "$MINIGAME_DIR/.env" "$ENV_FILE"
-else
-    echo "Attention : aucun .env trouvé pour $MINIGAME"
+# --- 5. Validation et remplacement du .env ---
+if [[ ! -f "$MINIGAME_DIR/.env" ]]; then
+    echo "ERREUR : aucun .env trouvé pour $MINIGAME — fichier obligatoire."
+    echo ""
+    echo "Crée le fichier $MINIGAME_DIR/.env avec au minimum :"
+    echo "  MC_VERSION=1.8.9"
+    exit 1
 fi
 
-echo "==> Terminé. Le serveur est prêt à démarrer avec $MINIGAME"
+# Vérification que MC_VERSION est bien défini
+source "$MINIGAME_DIR/.env"
+
+if [[ -z "${MC_VERSION:-}" ]]; then
+    echo "ERREUR : MC_VERSION n'est pas défini dans $MINIGAME_DIR/.env"
+    echo "Ajoute la ligne : MC_VERSION=<version>"
+    exit 1
+fi
+
+echo "==> Remplacement du .env (MC_VERSION=$MC_VERSION)"
+cp "$MINIGAME_DIR/.env" "$ENV_FILE"
+
+# --- 6. Résumé ---
+echo ""
+echo "╔══════════════════════════════════════════════════╗"
+echo "║            Switch terminé avec succès            ║"
+echo "╠══════════════════════════════════════════════════╣"
+printf  "║  Minijeu      : %-33s║\n" "$MINIGAME"
+printf  "║  MC Version   : %-33s║\n" "${MC_VERSION}"
+printf  "║  Java cible   : %-33s║\n" "${JAVA_VERSION:-résolu au démarrage}"
+printf  "║  RAM Xms      : %-33s║\n" "${JAVA_XMS:-auto (50% du Xmx)}"
+printf  "║  RAM Xmx      : %-33s║\n" "${JAVA_XMX:-depuis Pterodactyl}"
+printf  "║  Flags JVM    : %-33s║\n" "${JAVA_FLAGS:-(aucun)}"
+echo "╚══════════════════════════════════════════════════╝"
+echo ""
+echo "==> Redémarre le serveur dans Pterodactyl pour appliquer."
