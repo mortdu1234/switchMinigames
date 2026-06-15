@@ -32,6 +32,7 @@ echo "==> Switch vers le minijeu : $MINIGAME"
 
 # --- 1. Suppression du monde actuel ---
 echo "==> Suppression de l'ancien monde"
+chmod -R 775 "$WORLD_DIR" "${WORLD_DIR}_nether" "${WORLD_DIR}_the_end" 2>/dev/null || true
 rm -rf "$WORLD_DIR" "${WORLD_DIR}_nether" "${WORLD_DIR}_the_end"
 rm -f "$WORLD_ZIP"
 
@@ -39,9 +40,11 @@ rm -f "$WORLD_ZIP"
 if [[ -f "$MINIGAME_DIR/world.zip" ]]; then
     echo "==> Extraction de la nouvelle map (world.zip)"
     unzip -q "$MINIGAME_DIR/world.zip" -d "$BASE_DIR"
+    chmod -R 775 "$WORLD_DIR" 2>/dev/null || true
 elif [[ -d "$MINIGAME_DIR/world" ]]; then
     echo "==> Copie de la nouvelle map (dossier world)"
     cp -r "$MINIGAME_DIR/world" "$WORLD_DIR"
+    chmod -R 775 "$WORLD_DIR" 2>/dev/null || true
 else
     echo "Attention : aucune map (world.zip ou world/) trouvée pour $MINIGAME"
 fi
@@ -50,6 +53,7 @@ fi
 if [[ -f "$MINIGAME_DIR/server.jar" ]]; then
     echo "==> Remplacement du server.jar"
     cp "$MINIGAME_DIR/server.jar" "$SERVER_JAR"
+    chmod 664 "$SERVER_JAR" 2>/dev/null || true
 else
     echo "Attention : aucun server.jar trouvé pour $MINIGAME"
 fi
@@ -58,6 +62,7 @@ fi
 if [[ -f "$MINIGAME_DIR/server.properties" ]]; then
     echo "==> Remplacement du server.properties"
     cp "$MINIGAME_DIR/server.properties" "$SERVER_PROPS"
+    chmod 664 "$SERVER_PROPS" 2>/dev/null || true
 else
     echo "Attention : aucun server.properties trouvé pour $MINIGAME"
 fi
@@ -82,6 +87,7 @@ fi
 
 echo "==> Remplacement du .env (MC_VERSION=$MC_VERSION)"
 cp "$MINIGAME_DIR/.env" "$ENV_FILE"
+chmod 664 "$ENV_FILE" 2>/dev/null || true
 
 # --- 6. Résumé ---
 echo ""
