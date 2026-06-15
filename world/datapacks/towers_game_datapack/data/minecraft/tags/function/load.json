@@ -1,8 +1,0 @@
-{
-  "values": [
-    "timer:load",
-    "winpoints:load",
-    "combatmode:load",
-    "game:load"
-  ]
-}

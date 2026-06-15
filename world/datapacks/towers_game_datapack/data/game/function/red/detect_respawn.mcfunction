@@ -1,1 +1,0 @@
-execute as @a[x=32,y=63,z=1024,distance=..2,team=Red,gamemode=survival] run function game:red/respawn

@@ -1,2 +1,0 @@
-execute if entity @e[type=minecraft:block_display,tag=notready_red,limit=1] run return run function game:red/set_ready
-execute if entity @e[type=minecraft:block_display,tag=ready_red,limit=1] run return run function game:red/set_notready

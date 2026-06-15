@@ -1,1 +1,0 @@
-execute as @a[scores={leaveObsRequest=1..}] run function game:spectator/leave

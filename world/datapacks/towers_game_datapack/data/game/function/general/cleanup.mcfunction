@@ -1,1 +1,0 @@
-kill @e[type=!player,scores={delete=1..}]

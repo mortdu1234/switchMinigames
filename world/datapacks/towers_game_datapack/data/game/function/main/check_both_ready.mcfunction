@@ -1,1 +1,0 @@
-execute if score red team_ready matches 1 if score blue team_ready matches 1 if score game game_countdown matches 0 run function game:main/start_countdown
